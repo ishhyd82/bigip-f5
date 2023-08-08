@@ -1,0 +1,25 @@
+---
+- name: F5 BIGip Device Facts
+  hosts: bigip
+  gather_facts: False
+  
+  # vars:
+  #   cancelprecheck: false #F5 precheck 
+  #   provider:
+  #     password: "{{ ansible_ssh_pass }}"
+  #     server: "{{ ansible_host }}"
+  #     user: "{{ ansible_user }}"
+  #     validate_certs: False
+
+  tasks:
+    - name: Collect BIG-IP information
+      bigip_device_info:
+        gather_subset:
+          - interfaces
+          - vlans
+        provider:
+          server: 10.14.255.233
+          user: mhussain
+          password: Zoya@12345
+      delegate_to: localhost
+      validate_certs: False
