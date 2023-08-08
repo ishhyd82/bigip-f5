@@ -1,0 +1,2 @@
+how to run ansible playbook
+ansible-playbook -i inventory/hosts bigipfacts.yaml
