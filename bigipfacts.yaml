@@ -26,12 +26,14 @@
       bigip_device_info:
         gather_subset:
           - interfaces
-          - vlans
-          - virtual-servers
-          - ltm-pools
         provider:
           server: 10.14.255.233
           user: "{{ username }}"
           password: "{{ password }}"
           validate_certs: false
       delegate_to: localhost
+      register: interface_output
+    
+    - name: print registered output
+      ansible.builtin.debug:
+       var: interface_output
