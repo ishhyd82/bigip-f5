@@ -26,6 +26,7 @@
       bigip_device_info:
         gather_subset:
           - interfaces
+          - ltm-pools
         provider:
           server: 10.14.255.233
           user: "{{ username }}"
