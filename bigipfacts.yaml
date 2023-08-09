@@ -11,6 +11,15 @@
   #     server: "{{ ansible_host }}"
   #     user: "{{ ansible_user }}"
   #     validate_certs: False
+  vars_prompt:
+
+    - name: username
+      prompt: What is your username?
+      private: false
+
+    - name: password
+      prompt: What is your password?
+      private: true
 
   tasks:
     - name: Collect BIG-IP information
@@ -22,7 +31,7 @@
           - ltm-pools
         provider:
           server: 10.14.255.233
-          user: mhussain
-          password: Zoya@12345
+          user: "{{ username }}"
+          password: "{{ password }}"
           validate_certs: false
       delegate_to: localhost
