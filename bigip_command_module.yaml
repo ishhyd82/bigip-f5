@@ -1,0 +1,30 @@
+---
+- name: F5 BIGip Device Facts
+  hosts: bigip
+  gather_facts: False
+  
+  vars_prompt:
+
+    - name: username
+      prompt: What is your username?
+      private: false
+
+    - name: password
+      prompt: What is your password?
+      private: true
+
+  tasks:
+    - name: Collect BIG-IP information
+      bigip_command:
+        commands: show sys version
+        provider:
+          server: 10.14.255.233
+          user: "{{ username }}"
+          password: "{{ password }}"
+          validate_certs: false
+      delegate_to: localhost
+      register: sysversion_output
+    
+    - name: print registered output
+      ansible.builtin.debug:
+       var: sysversion_output
